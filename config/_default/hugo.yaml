@@ -1,7 +1,6 @@
 baseURL: 'https://example.com'
-
-disableKinds:
-  - page
-  - section
-  - taxonomy
-  - term
+# disableKinds:
+#   - page
+#   - section
+#   - taxonomy
+#   - term
