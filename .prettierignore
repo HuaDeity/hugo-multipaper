@@ -1,0 +1,17 @@
+# Ignore artifacts:
+build
+coverage
+
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+
+/images
+/static
+
+.git*
+*.toml
+.prettierignore
+LICENSE
+yarn.lock

@@ -1,0 +1,10 @@
+{{ if .IsTranslated }}
+{{ with .Translations }}
+<ul>
+    {{ range . }}
+    {{ $flag := .Language.Params.flag}}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }} ({{ $flag }})</a></li>
+    {{ end }}
+</ul>
+{{ end }}
+{{ end }}
