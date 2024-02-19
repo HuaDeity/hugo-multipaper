@@ -1,0 +1,12 @@
+@layer base {
+  html,
+  body {
+    @apply h-full;
+  }
+
+  body {
+    -webkit-tap-highlight-color: transparent;
+    @apply bg-transparent;
+    @apply dark:bg-black/90;
+  }
+}

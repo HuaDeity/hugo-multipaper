@@ -5,11 +5,11 @@
       href="{{ `` | absLangURL }}"
       >{{ site.Title }}</a
     >
-    <div
-      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer {{ if site.Params.monoDarkIcon }}[background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert{{ else }}[background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)]{{ end }} dark:[background-position:right]"
+    <!-- <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer bg-left  bg-no-repeat {{ if site.Params.monoDarkIcon }} bg-[url('/theme.svg')] bg-cover dark:invert{{ else }} bg-[url('/theme.png')] bg-auto bg-(theme(spacing.6)) [transition:_background-position_0.4s_steps(5)]{{ end }} dark:[background-position:right]"
       role="button"
       aria-label="Dark"
-    ></div>
+    ></div> -->
     <div class="ml-4 text-2xl">
       {{ partial "allLanguage.html" . }}
     </div>
@@ -88,8 +88,7 @@
     >
       {{ range . }}<!---->
       <a
-        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./{{ . }}.svg)"
+        class="h-8 w-8 text-[0] bg-[url('/{{ . }}.svg')] bg-center bg-no-repeat lg:h-6 lg:w-6"
         href="{{ if eq . `rss` }}{{ `index.xml` | absURL }}{{ else if eq . `mastodon` }}{{ index site.Params . }}{{ else }}https://{{ . }}.com/{{ if eq . `linkedin` }}in/{{ end }}{{ index site.Params . }}{{ end }}"
         target="_blank"
         rel="{{ if eq . `rss` }}alternate{{ else }}me{{ end }}"

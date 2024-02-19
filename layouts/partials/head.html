@@ -18,7 +18,7 @@
   {{ end }}
 
   <!-- Author -->
-  {{ $site_author := or site.Author.name site.Params.name site.Title }}
+  {{ $site_author := or site.Params.author.name site.Author.name site.Params.name site.Title }}
   <!---->
   {{ if eq .Kind "page" }}
   <meta name="description" content="{{ .Summary }}" />
@@ -58,11 +58,12 @@
 
   <!-- Highlight JS -->
   {{ if and .IsPage (not site.Params.disableHLJS) }}
-  <script
-    defer
-    src="{{ `highlight.min.js` | absURL }}"
-    onload="hljs.initHighlightingOnLoad();"
-  ></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@catppuccin/highlightjs@0.1/css/catppuccin.variables.min.css">
+  <script type="module">
+    import hljs from 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/es/highlight.min.js';
+    hljs.highlightAll();
+  </script>
   {{ end }}
 
   <!-- Math -->

@@ -8,7 +8,14 @@ import atImport from 'postcss-import'
 const tailwind = tailwindcss(tailwindConfig)
 
 const config: ConfigFn = (ctx) => ({
-  plugins: [atImport(), nesting(), tailwind, process.env.HUGO_ENVIRONMENT === 'production' ? (autoprefixer(), cssnano()) : false]
+  plugins: [
+    atImport({
+      path: ['themes/multipaper/assets/css']
+    }),
+    nesting(),
+    tailwind,
+    process.env.HUGO_ENVIRONMENT === 'production' ? (autoprefixer(), cssnano()) : false
+  ]
 })
 
 export default config

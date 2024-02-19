@@ -34,12 +34,11 @@
 {{ end }}<!---->
 
 <html 
-  class="not-ready lg:text-base"
-  style="--bg: {{ $bg_color }}"
-  lang="{{ or site.LanguageCode site.Language.Lang }}"
+  class="not-ready lg:text-base "
+  lang="{{ site.LanguageCode }}"
 >
   {{ partial "head.html" . }}
-  <body class="text-black duration-200 ease-out dark:text-white">
+  <body class="text-black duration-200 ease-out dark:text-white dark:bg-black bg-[{{ $bg_color }}]">
     {{ partial "header.html" . }}
   
     <main
