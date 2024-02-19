@@ -1,4 +1,4 @@
-{{ $opts := dict "inlineImports" false }}
+{{ $opts := dict "inlineImports" true }}
 {{ $css := resources.Get "css/styles.css" }}
 {{ $css = $css | resources.PostCSS $opts }}
 {{ if hugo.IsProduction }}

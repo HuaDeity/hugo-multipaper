@@ -4,17 +4,13 @@ import tailwindcss from 'tailwindcss'
 import nesting from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
-import atImport from 'postcss-import'
 const tailwind = tailwindcss(tailwindConfig)
 
 const config: ConfigFn = (ctx) => ({
   plugins: [
-    atImport({
-      path: ['themes/multipaper/assets/css']
-    }),
     nesting(),
     tailwind,
-    process.env.HUGO_ENVIRONMENT === 'production' ? (autoprefixer(), cssnano()) : false
+    ...(process.env.HUGO_ENVIRONMENT === 'production' ? (autoprefixer(), cssnano()) : false)
   ]
 })
 
