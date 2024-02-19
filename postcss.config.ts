@@ -10,7 +10,7 @@ const config: ConfigFn = (ctx) => ({
   plugins: [
     nesting(),
     tailwind,
-    ...(process.env.HUGO_ENVIRONMENT === 'production' ? (autoprefixer(), cssnano()) : false)
+    process.env.HUGO_ENVIRONMENT === 'production' ? (autoprefixer(), cssnano()) : false
   ]
 })
 
