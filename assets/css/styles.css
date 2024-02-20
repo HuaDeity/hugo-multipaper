@@ -5,5 +5,4 @@
 @import 'base.css';
 @import 'components.css';
 @import 'utilities.css';
-@import 'light.css' (prefers-color-scheme: light);
-@import 'dark.css' (prefers-color-scheme: dark);
+@import 'custom.css';
