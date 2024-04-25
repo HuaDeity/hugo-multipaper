@@ -25,7 +25,7 @@
   <!-- Post Tags -->
   {{ if .Params.tags }}
   <footer class="mt-12 flex flex-wrap">
-    {{ range .Params.tags }} {{ $href := print (absURL "tags/") (urlize .) }}
+    {{ range .Params.tags }} {{ $href := print (absLangURL "tags/") (urlize .) }}
     <a
       class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
       href="{{ $href }}"
