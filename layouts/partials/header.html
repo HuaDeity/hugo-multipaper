@@ -36,6 +36,8 @@
       htmlClass.toggle('open');
     });
 
+    
+
     // dark theme
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     const lightBg = '{{ $bg_color }}'.replace(/"/g, '');
@@ -43,6 +45,10 @@
       metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
       htmlClass[isDark ? 'add' : 'remove']('dark');
       localStorage.setItem('dark', isDark);
+      const highlightTheme = document.getElementById('highlight-theme');
+      const flavor = isDark ? 'mocha' : 'latte';
+      highlightTheme.href = `https://cdn.jsdelivr.net/gh/catppuccin/chroma/dist/${flavor}-chroma-style.css`
+      document.dispatchEvent(new CustomEvent('darkModeChange', { detail: isDark }));
     };
 
     // init

@@ -108,21 +108,48 @@
   <!-- giscus comment -->
   {{ if and site.Params.giscus.repo (not (eq .Params.comments false)) }}
     <div class="giscus mt-24"></div>
-    <script src="https://giscus.app/client.js"
-          data-repo="{{ site.Params.giscus.repo }}"
-          data-repo-id="{{ site.Params.giscus.repoId }}"
-          data-category="{{ site.Params.giscus.category }}"
-          data-category-id="{{ site.Params.giscus.categoryId }}"
-          data-mapping="{{ site.Params.giscus.mapping | default (print `pathname`) }}"
-          data-strict="{{ site.Params.giscus.strict | default (print `1`) }}"
-          data-reactions-enabled="{{ site.Params.giscus.reactionsEnabled | default (print `0`) }}"
-          data-emit-metadata="{{ site.Params.giscus.emitMetadata | default (print `0`) }}"
-          data-input-position="{{ site.Params.giscus.inputPosition | default (print `top`) }}"
-          data-theme="{{ site.Params.giscus.theme | default (print `light`) }}"
-          data-lang="{{ site.Params.giscus.lang | default (print `en`) }}"
-          data-loading="{{ site.Params.giscus.loading | default (print `lazy`) }}"
-          crossorigin="anonymous"
-          async>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const isDark = localStorage.getItem('dark') === 'true';
+        const flavor = isDark ? 'mocha' : 'latte'; // 根据暗模式设置风味
+
+        const script = document.createElement('script');
+        script.src = "https://giscus.app/client.js";
+        script.dataset.repo = "{{ .Site.Params.giscus.repo }}";
+        script.dataset.repoId = "{{ .Site.Params.giscus.repoId }}";
+        script.dataset.category = "{{ .Site.Params.giscus.category }}";
+        script.dataset.categoryId = "{{ .Site.Params.giscus.categoryId }}";
+        script.dataset.mapping = "{{ default `pathname` .Site.Params.giscus.mapping }}";
+        script.dataset.strict = "{{ default `1` .Site.Params.giscus.strict }}";
+        script.dataset.reactionsEnabled = "{{ default `0` .Site.Params.giscus.reactionsEnabled }}";
+        script.dataset.emitMetadata = "{{ default `0` .Site.Params.giscus.emitMetadata }}";
+        script.dataset.inputPosition = "{{ default `top` .Site.Params.giscus.inputPosition }}";
+        script.dataset.theme = '{{ default `preferred_color_scheme` .Site.Params.giscus.theme }}';
+        if (script.dataset.theme === "catppuccin") {
+          script.dataset.theme = `https://giscus.catppuccin.com/themes/${flavor}.css`;
+        }
+        script.dataset.lang = "{{ default `en` .Site.Params.giscus.lang }}";
+        script.async = true;
+        script.crossOrigin = "anonymous";
+
+        document.head.appendChild(script);
+      });
+      function sendMessage(message) {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        console.log(iframe)
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      {{ if eq site.Params.giscus.theme "catppuccin"}}
+      document.addEventListener('darkModeChange', function (event) {
+        const flavor = event.detail ? 'mocha' : 'latte';
+        sendMessage({
+          setConfig: {
+            theme: `https://giscus.catppuccin.com/themes/${flavor}.css`
+          }
+        });
+      });
+      {{ end }}
     </script>
   {{ end }}
 </article>
