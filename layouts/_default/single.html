@@ -126,7 +126,7 @@
         script.dataset.inputPosition = "{{ default `top` .Site.Params.giscus.inputPosition }}";
         script.dataset.theme = '{{ default `preferred_color_scheme` .Site.Params.giscus.theme }}';
         if (script.dataset.theme === "catppuccin") {
-          script.dataset.theme = `https://giscus.catppuccin.com/themes/${flavor}.css`;
+          script.dataset.theme = `https://cdn.jsdelivr.net/gh/catppuccin/giscus/themes/${flavor}.css`;
         }
         script.dataset.lang = "{{ default `en` .Site.Params.giscus.lang }}";
         script.async = true;
@@ -145,7 +145,7 @@
         const flavor = event.detail ? 'mocha' : 'latte';
         sendMessage({
           setConfig: {
-            theme: `https://giscus.catppuccin.com/themes/${flavor}.css`
+            theme: `https://cdn.jsdelivr.net/gh/catppuccin/giscus/themes/${flavor}.css`
           }
         });
       });
